@@ -47,13 +47,13 @@ List the contents of that directory by typing ```ls``` at your command prompt. Y
 Now that your working directory contains your file, you'll use the gdal2tiles.py script to create map tiles for your map.
 
 The most basic command for this produces a new file directory which contains several folders of tiles, plus a web map template for Google Maps, OpenLayers, and Leaflet. However, there are many options we can add to our command if we need to, and you can find out more in the [gdal2tiles documentation](https://gdal.org/programs/gdal2tiles.html). We need to have gdal2tiles.py create a tileset from an input raster file (vanIsland.tif), and store them in a new file directory (tiles). Gdal2tiles.py will create the new directory for us if it doesn't yet exist with the following command structure:
-```gdal2tiles.py [input file] [output-directory]   ```
+```gdal2tiles.py [input file] [output directory]   ```
 
 At your command prompt, type:
 ```gdal2tiles.py vanIsland.tif tiles```
 
 Once executed, you should see the tile creation progress.
-![Wait for the tiles][tiles-loading]
+![](img/tiles.gif)
 
 If all goes as planned, this is what you should have in your working directory:
 ```
@@ -88,9 +88,3 @@ If all goes as planned, this is what you should have in your working directory:
     |
     └── tilemapresource.xml
     ```
-
-
-
-
-
-[tiles-loading]: tiles.gif "wait for the tiles..."
