@@ -211,7 +211,7 @@ Maybe instead of toggling the layer on and off, we want to have a slider to easi
 
 In the ```<head>``` of our html document, paste the following script:
 
-```javascript
+```html
 <script>
 function init() {
 
