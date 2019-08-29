@@ -1,21 +1,20 @@
 ## Create Map Tiles with GDAL
 
-These are the basic steps to complete in order to create a set of map tiles from a georeferenced map. We will use the raster program We'll configure the final web map to have a slide for adjusting the transparency of the overlaid map.
+This is a quick tutorial for creating a tile set using GDAL in the command-line. We will use the gdal2tiles.py script which spits out the map tiles and a few HTML docs for viewing them in your web browser. Then we'll take a quick peek at the HTML doc that is formatted for LeafletJS, and add a transparency slider for improved controls for the map overlay.
+
+These are the most basic steps for going from a georeferenced map to a set of tiles. We are avoiding more advanced methods of creating tiles or viewing rasters in the web.
 
 
 ### Software needed
-1. GDAL (Geospatial Data Abstraction Library)    **Please install GDAL before the workshop**      
-[DOWNLOAD HERE](https://gdal.org/download.html#current-releases)           
-2. Internet Browser    
-
-
+1. [GDAL](https://gdal.org/download.html#current-releases)  (Geospatial Data Abstraction Library). **You'll need to have a working command line interface for your operating system to use GDAL for this tutorial**.                  
+2. Internet Browser (preferably [Firefox](https://www.mozilla.org/) or [Chrome](https://www.google.com/chrome/))    
+3. Source code editor (like [Notepad++](https://notepad-plus-plus.org/) or [Atom](https://atom.io/))
 
 ## Other prerequisites
 1. Familiarity with (or willingness to try) command line tools.
-If you're on a Mac, we'll use Terminal. If on Windows, we'll use the Windows command.
-2. A GeoTiff.
+2. A GeoTiff.    
 
-
+<!--
 ## Shell Commands for this tutorial    
 #### Basic Commands   
 ```cd``` - Change working directory      
@@ -23,9 +22,9 @@ If you're on a Mac, we'll use Terminal. If on Windows, we'll use the Windows com
 
 #### GDAL Commands  
 ```gdalinfo --version``` - Get the version of your GDAL installation     
+-->
 
-
-# Create some tiles!
+# Create tiles with gdal2tiles.py!
 Open your command line tool (Cygwin, Terminal, etc.). Let's test out our GDAL installation. In your command line type:   
 ```gdalinfo --version```
 
@@ -43,20 +42,20 @@ Since my home directory is /Users/evan/, in Terminal I can use the *change direc
 
 List the contents of that directory by typing ```ls``` at your command prompt. You should see the name of your GeoTiff or raster image. Mine's called **vanIsland.tif**
 
-### Use gdal2tiles.py to create a tile set
+### gdal2tiles.py --> tiles
 Now that your working directory contains your file, you'll use the gdal2tiles.py script to create map tiles for your map.
 
 The most basic command for this produces a new file directory which contains several folders of tiles, plus a web map template for Google Maps, OpenLayers, and Leaflet. However, there are many options we can add to our command if we need to, and you can find out more in the [gdal2tiles documentation](https://gdal.org/programs/gdal2tiles.html). We need to have gdal2tiles.py create a tileset from an input raster file (vanIsland.tif), and store them in a new file directory (tiles). Gdal2tiles.py will create the new directory for us if it doesn't yet exist with the following command structure:
 ```gdal2tiles.py [input file] [output directory]   ```
 
-At your command prompt, type:
+At my command prompt, I typed:
 ```gdal2tiles.py vanIsland.tif tiles```
 
 Once executed, you should see the tile creation progress.    
 
 ![](img/tiles.gif)
 
-If all goes as planned, this is what you should have in your working directory:
+If all goes as planned, this you should see something like this in your working directory:
 ```
 
 ├── vanIsland.tif
@@ -92,10 +91,10 @@ If all goes as planned, this is what you should have in your working directory:
 
 # Examine the leaflet.html template!
 
-One of the template .html files that gdal2tiles.py creates is formatted for using LeafletJS. Leaflet is an open source web mapping library that is widely used and documented. First, let's double click to view that it looks like in your internet browser.
+One of the template .html files that gdal2tiles.py creates is formatted for using [Leaflet](https://leafletjs.com/). Leaflet is an open source web mapping library that is widely used and documented. First, let's double click to view that it looks like in your internet browser.
 
 
-Let's examine the file "under the hood":
+Now let's examine the file "under the hood":
 
 ```html
 <!DOCTYPE html>
@@ -248,12 +247,12 @@ And then, in the ```<head>``` and inside the ```<style>```, add the following CS
 
 ```CSS
 .ui-opacity {
-    background:#FFF;
+  background:#FFF;
 	position:absolute;
 	left:10px;
 	top:70px;
 	height:200px;
-    width:26px;
+  width:26px;
 	border:1px solid rgba(0,0,0,0.4);
 	border-radius:3px;
 	z-index:1000;
